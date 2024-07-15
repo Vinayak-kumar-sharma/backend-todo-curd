@@ -113,7 +113,7 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
   2. Create a new branch ( `git checkout -b branch-name` ) .
 
-  3. Commit your changes ( `git commit -m 'Add some feature` ).
+  3. Commit your changes ( `git commit -m 'Add some feature'` ).
 
   4. Push to the branch ( `git push origin branch-name` ).
 
