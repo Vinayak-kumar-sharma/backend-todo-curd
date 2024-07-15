@@ -6,15 +6,16 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+const port = 3000;
 
 //Routes..
 
 app.post("/todo",async(req,res)=>{
   try {
     
-    const{ description } = req.body;
-    const newtodo = await pool.query('INSERT INTO todo (description) VALUES($1) RETURNING *',
-      [description]
+    const{ title } = req.body;
+    const newtodo = await pool.query('INSERT INTO todo (title) VALUES($1) RETURNING *',
+      [title]
     )
 
     res.json(newtodo.rows[0])
@@ -47,11 +48,11 @@ app.get("/todo/:id",async(req,res)=> {
 app.put("/todos/:id",async(req,res)=>{
   try {
     const{ id } = req.params;
-    const{ description } = req.body;
+    const{ title } = req.body;
 
-    const updatetodo = await pool.query('UPDATE todo SET description = $1 WHERE todo_id = $2',[description, id])
+    const updatetodo = await pool.query('UPDATE todo SET title = $1 WHERE todo_id = $2',[title, id])
 
-      res.json("TODO was updated!")
+      res.json("TODO was updated!",updatetodo)
 
   } catch (error) {
 
@@ -74,7 +75,7 @@ app.delete("/todo/:id",async(req,res)=>{
 
 
 
-app.listen(3000,()=>{
+app.listen(port,()=>{
   console.log("server is running")
 })
 
